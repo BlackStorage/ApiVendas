@@ -1,1 +1,1 @@
-console.log('Hello Dev!');
+const a = 2;
