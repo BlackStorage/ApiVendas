@@ -1,1 +1,3 @@
-const a = 23;
+'use strict';
+console.log('hello dev');
+// testando o commit;
