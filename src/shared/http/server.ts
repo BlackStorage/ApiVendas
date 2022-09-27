@@ -1,3 +1,39 @@
-'use strict';
-console.log('hello dev');
-const a = 2;
+import 'reflect-metadata';
+import express, { NextFunction, response, request} from 'express';
+import cors from 'cors';
+import routes from './routes';
+import AppError from './erros/AppError';
+import '@shared/typeorm';
+
+const app = express(); // atribuição do xpress para uma variável;
+
+app.use(cors()); // para aceitar requisições de qualquer um;
+app.use(express.json()); // para poder interpretar arquivos .json;
+
+app.use(routes); // habilitação das rotas, no arquivo index.ts;
+
+// middle, usado para tratamento de erros;
+app.use(
+  (
+    error: Error,
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ) => {
+    if (error instanceof AppError) {
+      return response.status(error.statusCode).json({
+        status: 'error',
+        message: error.message
+      });
+    }
+      return response.status(500).json({
+        status: 'error',
+        message: 'Inernal servor error'
+    });
+  },
+)
+const porta = 3333;
+app.listen(porta, () => {
+  console.log('Server started on port: ', porta);
+});
+
