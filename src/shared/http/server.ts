@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import express, { NextFunction, Request, Response } from 'express';
+import express, { Request, Response } from 'express';
 import 'express-async-errors'; // modulo para tratamento de erros do express
 import cors from 'cors';
 import { errors } from 'celebrate';
@@ -19,7 +19,7 @@ app.use(errors());
 
 app.use(
   // middle, usado para tratamento de erros;
-  (error: Error, request: Request, response: Response, next: NextFunction) => {
+  (error: Error, request: Request, response: Response) => {
     if (error instanceof AppError) {
       return response.status(error.statusCode).json({
         status: 'error',
