@@ -14,10 +14,14 @@ export default function isAuthenticatad(
     throw new AppError('JWT Token is missing');
   }
 
+  // Bearer lLKJHi76yfJHU65hujJYt786t54654687
+
   const [, token] = authHeader.split(' ');
 
   try {
     const decodecToken = verify(token, authConfig.jwt.secret);
+
+    console.log(!decodecToken);
 
     return next();
   } catch {

@@ -5,7 +5,7 @@ import { Router } from 'express';
 
 const routes = Router();
 
-routes.use('/products', productsRouter);
+routes.use('/products', productsRouter)
 routes.use('/users', usersRouter);
 routes.use('/sessions', sessionsRouter);
 
