@@ -22,7 +22,7 @@ productsRouter.post(
   celebrate({
     [Segments.BODY]: {
       name: Joi.string().required(), // o metodo required() não aceita dados nulos, ou seja, o form precisa ter dado.
-      price: Joi.number().precision(2).required(), // o método presision() estipula a quantidade de casas decimais
+      price: Joi.number().precision(2).required(), // o método precision() estipula a quantidade de casas decimais
       quantity: Joi.number().required(),
     },
   }),

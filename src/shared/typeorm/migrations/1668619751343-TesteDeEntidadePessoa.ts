@@ -4,14 +4,21 @@ export class TesteDeEntidadePessoa1668619751343 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'pessoas',
+        name: 'people',
         columns: [
           {
-            name: 'nome',
+            name: 'id',
+            type: 'uuid',
+            isPrimary: true,
+            generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()',
+          },
+          {
+            name: 'name',
             type: 'varchar',
           },
           {
-            name: 'idade',
+            name: 'age',
             type: 'int',
           },
           {
@@ -30,6 +37,6 @@ export class TesteDeEntidadePessoa1668619751343 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('pessoas');
+    await queryRunner.dropTable('people');
   }
 }
